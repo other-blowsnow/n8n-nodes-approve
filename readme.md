@@ -1,3 +1,6 @@
+<img width="1872" height="890" alt="image" src="https://github.com/user-attachments/assets/e83db53b-4490-42ea-8a6f-148ad3b87108" />
+
+
 # 安装
 - 转到设置>社区节点。
 - 选择安装。
