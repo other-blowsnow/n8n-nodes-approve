@@ -1,0 +1,12 @@
+{
+	"node": "n8n-nodes-base.approve",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"details": "Approval Tool",
+	"categories": ["HITL"],
+	"resources": {},
+	"alias": ["Approve", "form"],
+	"subcategories": {
+		"HITL": ["Human in the Loop"]
+	}
+}
