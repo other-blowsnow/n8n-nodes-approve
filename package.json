@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-approve",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "approve tools",
   "keywords": [
     "n8n-community-node-package",
@@ -26,10 +26,10 @@
   "scripts": {
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "format": "prettier nodes --write",
+    "lint": "eslint nodes package.json",
+    "lintfix": "eslint nodes package.json --fix",
+    "prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes package.json"
   },
   "files": [
     "dist"
@@ -37,7 +37,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "dist/nodes/TestApproveNode/TestApproveNode.node.js"
+      "dist/nodes/ApproveNode/ApproveNode.node.js"
     ]
   },
   "devDependencies": {
@@ -52,7 +52,8 @@
     "typescript": "^5.5.3"
   },
   "peerDependencies": {
-    "n8n-workflow": "^1.108.0"
+    "n8n-workflow": "^1.108.0",
+    "n8n-core": "^1.108.0"
   },
   "dependencies": {
     "form-data": "^4.0.1"

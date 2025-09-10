@@ -3,7 +3,11 @@
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"details": "Approval Tool",
-	"categories": ["HITL"],
+	"categories": [
+		"Communication",
+		"HITL",
+		"Core Nodes"
+	],
 	"resources": {},
 	"alias": ["Approve", "form"],
 	"subcategories": {

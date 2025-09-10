@@ -10,6 +10,8 @@ import {
 import ResourceBuilder from "../help/builder/ResourceBuilder";
 import ModuleLoadUtils from "../help/utils/ModuleLoadUtils";
 import {ResourceOperations} from "../help/type/IResource";
+import { sendAndWaitWebhooksDescription } from './descriptions';
+import { sendAndWaitWebhook } from './utils';
 
 const resourceBuilder = new ResourceBuilder();
 ModuleLoadUtils.loadModules(__dirname, 'resource/*.js').forEach((resource) => {
@@ -27,8 +29,7 @@ export class ApproveNode implements INodeType {
 		icon: 'file:icon.png',
 		group: ['transform'],
 		version: 1,
-		description:
-			'Approval Tools',
+		description: 'Approval Tools',
 		defaults: {
 			name: 'ApproveNode',
 		},
@@ -36,7 +37,10 @@ export class ApproveNode implements INodeType {
 		outputs: ['main'],
 		usableAsTool: true,
 		properties: resourceBuilder.build(),
+		webhooks: sendAndWaitWebhooksDescription,
 	};
+
+	webhook = sendAndWaitWebhook;
 
 	// The function below is responsible for actually doing whatever this node
 	// is supposed to do. In this case, we're just appending the `myString` property
@@ -57,7 +61,6 @@ export class ApproveNode implements INodeType {
 			throw new NodeOperationError(this.getNode(), '未实现方法: ' + resource + '.' + operation);
 		}
 
-
 		// Iterates over all input items and add the key "myString" with the
 		// value the parameter "myString" resolves to.
 		// (This could be a different value for each item in case it contains an expression)
@@ -66,7 +69,7 @@ export class ApproveNode implements INodeType {
 				this.logger.debug('call function', {
 					resource,
 					operation,
-					itemIndex
+					itemIndex,
 				});
 
 				responseData = await callFunc.call(this, itemIndex);
@@ -76,15 +79,15 @@ export class ApproveNode implements INodeType {
 					operation,
 					itemIndex,
 					errorMessage: error.message,
-					stack: error.stack
-				})
+					stack: error.stack,
+				});
 
 				// This node should never fail but we want to showcase how
 				// to handle errors.
 				if (this.continueOnFail()) {
 					returnData.push({
 						json: {
-							error: error.message
+							error: error.message,
 						},
 						pairedItem: itemIndex,
 					});
