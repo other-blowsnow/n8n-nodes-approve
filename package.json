@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-approve",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "approve tools",
   "keywords": [
     "n8n-community-node-package",

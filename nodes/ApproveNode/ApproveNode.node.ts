@@ -7,9 +7,9 @@ import {
 	NodeOperationError,
 } from 'n8n-workflow';
 
-import ResourceBuilder from "../help/builder/ResourceBuilder";
-import ModuleLoadUtils from "../help/utils/ModuleLoadUtils";
-import {ResourceOperations} from "../help/type/IResource";
+import ResourceBuilder from '../help/builder/ResourceBuilder';
+import ModuleLoadUtils from '../help/utils/ModuleLoadUtils';
+import { ResourceOperations } from '../help/type/IResource';
 import { sendAndWaitWebhooksDescription } from './descriptions';
 import { sendAndWaitWebhook } from './utils';
 
@@ -20,6 +20,8 @@ ModuleLoadUtils.loadModules(__dirname, 'resource/*.js').forEach((resource) => {
 		resourceBuilder.addOperate(resource.value, operate);
 	})
 });
+
+console.log('resourceBuilder.build()', resourceBuilder.build());
 
 export class ApproveNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -41,6 +43,30 @@ export class ApproveNode implements INodeType {
 	};
 
 	webhook = sendAndWaitWebhook;
+
+	// methods = {
+	// 	loadOptions: {
+	// 		async getNextWaitApproveNodes(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>{
+	// 			// @ts-ignore
+	// 			let workflow: any = this.workflow;
+	//
+	// 			console.log('workflow', workflow);
+	// 			console.log('name', this.getNode().name);
+	// 			// 获取后面的节点列表
+	// 			let childNodes = this.getChildNodes(this.getNode().name);
+	// 			let nodes: INodePropertyOptions[] = [];
+	// 			for (const node of childNodes) {
+	// 				nodes.push({
+	// 					name: node.name,
+	// 					value: workflow[node.name].id,
+	// 				})
+	// 			}
+	// 			console.log('getNextWaitApproveNodes', childNodes);
+	// 			console.log('getNextWaitApproveNodes 2', this.constructor.name);
+	// 			return nodes;
+	// 		}
+	// 	}
+	// };
 
 	// The function below is responsible for actually doing whatever this node
 	// is supposed to do. In this case, we're just appending the `myString` property

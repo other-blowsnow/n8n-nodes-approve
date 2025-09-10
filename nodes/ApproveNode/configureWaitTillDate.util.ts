@@ -4,27 +4,28 @@ import type { IExecuteFunctions, IDataObject } from 'n8n-workflow';
 export function configureWaitTillDate(
 	context: IExecuteFunctions,
 	location: 'options' | 'root' = 'options',
+	index: number = 0
 ) {
 	let waitTill = WAIT_INDEFINITELY;
 	let limitOptions: IDataObject = {};
 
 	if (location === 'options') {
-		limitOptions = context.getNodeParameter('options.limitWaitTime.values', 0, {}) as {
+		limitOptions = context.getNodeParameter('options.limitWaitTime.values', index, {}) as {
 			limitType?: string;
 			resumeAmount?: number;
 			resumeUnit?: string;
 			maxDateAndTime?: string;
 		};
 	} else {
-		const limitWaitTime = context.getNodeParameter('limitWaitTime', 0, false);
+		const limitWaitTime = context.getNodeParameter('limitWaitTime', index, false);
 		if (limitWaitTime) {
-			limitOptions.limitType = context.getNodeParameter('limitType', 0, 'afterTimeInterval');
+			limitOptions.limitType = context.getNodeParameter('limitType', index, 'afterTimeInterval');
 
 			if (limitOptions.limitType === 'afterTimeInterval') {
-				limitOptions.resumeAmount = context.getNodeParameter('resumeAmount', 0, 1) as number;
-				limitOptions.resumeUnit = context.getNodeParameter('resumeUnit', 0, 'hours');
+				limitOptions.resumeAmount = context.getNodeParameter('resumeAmount', index, 1) as number;
+				limitOptions.resumeUnit = context.getNodeParameter('resumeUnit', index, 'hours');
 			} else {
-				limitOptions.maxDateAndTime = context.getNodeParameter('maxDateAndTime', 0, '');
+				limitOptions.maxDateAndTime = context.getNodeParameter('maxDateAndTime', index, '');
 			}
 		}
 	}
