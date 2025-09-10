@@ -1,13 +1,9 @@
 # 安装
-Go to Settings > Community Nodes.
-
-Select Install.
-
-Enter `n8n-nodes-approve` in Enter npm package name.
-
-Agree to the risks of using community nodes: select I understand the risks of installing unverified code from a public source.
-
-Select Install.
+- 转到设置>社区节点。
+- 选择安装。
+- 在输入 npm 包名称中输入 n8n-nodes-approve。
+- 同意使用社区节点的风险：选择我了解从公共来源安装未经验证的代码的风险。
+- 选择安装。
 
 # 功能
 - 获取审批地址
