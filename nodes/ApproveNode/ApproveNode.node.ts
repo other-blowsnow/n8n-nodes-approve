@@ -21,8 +21,6 @@ ModuleLoadUtils.loadModules(__dirname, 'resource/*.js').forEach((resource) => {
 	})
 });
 
-console.log('resourceBuilder.build()', resourceBuilder.build());
-
 export class ApproveNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'ApproveNode',

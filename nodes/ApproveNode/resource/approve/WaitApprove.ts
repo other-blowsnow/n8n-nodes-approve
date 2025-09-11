@@ -2,6 +2,7 @@ import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperations } from '../../../help/type/IResource';
 import { limitWaitTimeProperties } from '../../descriptions';
 import { configureWaitTillDate } from '../../configureWaitTillDate.util';
+import { ACTION_RECORDED_PAGE } from '../../utils';
 
 export default {
 	name: 'Wait Approve',
@@ -31,6 +32,16 @@ export default {
 						},
 					],
 				},
+				{
+					name: 'output',
+					// eslint-disable-next-line n8n-nodes-base/node-param-display-name-not-first-position
+					displayName: 'Output Template',
+					type: 'string',
+					typeOptions: {
+						editor: 'htmlEditor',
+					},
+					default: ACTION_RECORDED_PAGE,
+				}
 			],
 		},
 	],

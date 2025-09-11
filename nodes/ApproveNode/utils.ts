@@ -77,12 +77,23 @@ export const ACTION_RECORDED_PAGE = `
 </html>`;
 
 export async function sendAndWaitWebhook(this: IWebhookFunctions) {
+	const output = this.getNodeParameter('options.output', ACTION_RECORDED_PAGE);
 	const req = this.getRequestObject();
 
-	const query = req.query as { approved: 'false' | 'true' };
-	const approved = query.approved === 'true';
 	return {
-		webhookResponse: ACTION_RECORDED_PAGE,
-		workflowData: [[{ json: { data: { approved } } }]],
+		webhookResponse: output,
+		workflowData: [
+			[
+				{
+					json: {
+						url: req.url,
+						method: req.method,
+						query: req.query,
+						body: this.getBodyData(),
+						headers: req.headers,
+					},
+				},
+			],
+		],
 	};
 }
